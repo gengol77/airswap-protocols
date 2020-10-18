@@ -29,9 +29,11 @@ module.exports = async (deployer, network) => {
     const PNK = '0x93ed3fbe21207ec2e8f2d3c3de6e058cb73bc04d'
     const MKR = '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2'
     const UNI = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+    const renBTC = '0xeb4c2781e4eba804ce9a9803c67d0893436bb27d'
+    const wBTC = '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'
 
-    // const pairs = [[WBTC, USDC], [AST, WBTC], [WBTC, USDT], [AST, USDT], [CHI, WBTC], [GST2, WBTC], [WBTC, sUSD], [PNK, WETH], [MKR, WETH]]
-    const pairs = [[UNI, WETH], [WETH, UNI]]
+    // const pairs = [[WBTC, USDC], [AST, WBTC], [WBTC, USDT], [AST, USDT], [CHI, WBTC], [GST2, WBTC], [WBTC, sUSD], [PNK, WETH], [MKR, WETH], [UNI, WETH], [WETH, UNI], [renBTC, WETH], [WETH, renBTC]]
+    const pairs = [[renBTC, wBTC], [wBTC, renBTC]]
     pairArrays = _.unzip(pairs)
     console.log(pairArrays)
 
@@ -42,7 +44,7 @@ module.exports = async (deployer, network) => {
     let gasEstimate = await batcher.createIndices.estimateGas(indexer.address, pairArrays[0], pairArrays[1], "0x0000")
     console.log(gasEstimate)
 
-    // uncomment when ready
-    // let trx = await batcher.createIndices(indexer.address, pairArrays[0], pairArrays[1], "0x0000")
+    // REMINDER: update gas price in truffle-config.js and uncomment when ready
+    let trx = await batcher.createIndices(indexer.address, pairArrays[0], pairArrays[1], "0x0000")
   }
 }
