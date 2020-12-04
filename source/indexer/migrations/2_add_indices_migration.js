@@ -14,7 +14,6 @@ module.exports = async (deployer, network) => {
 
     let indexer = await Indexer.at('0xbA9aB9710Bd461F30C247f4cA2Cb7f453C22570e')
 
-    const cUSDC = '0x39AA39c021dfbaE8faC545936693aC917d5E7563'
     const WETH = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
     const DAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
     const TUSD = '0x0000000000085d4780B73119b644AE5ecd22b376'
@@ -31,6 +30,24 @@ module.exports = async (deployer, network) => {
     const UNI = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
     const renBTC = '0xeb4c2781e4eba804ce9a9803c67d0893436bb27d'
     const wBTC = '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599'
+    const cETH = '0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5'
+    const cDAI = '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643'
+    const cWBTC = '0xC11b1268C1A384e55C48c2391d8d480264A3A7F4'
+    const cUSDC = '0x39AA39c021dfbaE8faC545936693aC917d5E7563'
+    const cUSDT = '0xf650c3d88d12db855b8bf7d11be6c55a4e07dcc9'
+    const cUNI = '0x35A18000230DA775CAc24873d00Ff85BccdeD550'
+    const CHAI = '0x06af07097c9eeb7fd685c692751d5c66db49c215'
+    const GUSD = '0x056fd409e1d7a124bd7017459dfea2f387b6d5cd'
+    const HUSD = '0xdf574c24545e5ffecb9a659c229253d4111d87e1'
+    const PAX = '0x8e870d67f660d95d5be530380d0ec0bd388289e1'
+    const USDK = '0x1c48f86ae57291f7686349f12601910bd8d470bb'
+    const USDS = '0xa4bdb11dc0a2bec88d24a3aa1e6bb17201112ebe'
+    const yCRV = '0x9baf8a5236d44ac410c0186fe39178d5aad0bb87'
+    const yyCRV = '0x4ee15f44c6f0d8d1136c83efd2e8e4ac768954c6'
+    const yUSDT = '0x83f798e925bcd4017eb265844fddabb448f1707d'
+    const yUSDC = '0xd6ad7a6750a7593e092a9b218d66c0a814a3436e'
+    const yDAI = '0xacd43e627e64355f1861cec6d3a6688b31a6f952'
+    const yTUSD = '0x73a052500105205d34daf004eab301916da8190f'
 
     const deployed_pairs = [
       [WBTC, USDC],
@@ -56,7 +73,56 @@ module.exports = async (deployer, network) => {
       [AST, USDC],
       [AST, TUSD],
       [AST, renBTC],
+      [cETH, WETH],
+      [cETH, DAI],
+      [cETH, WBTC],
+      [cETH, USDC],
+      [cETH, USDT],
+      [cDAI, WETH],
+      [cDAI, DAI],
+      [cDAI, WBTC],
+      [cDAI, USDC],
+      [cDAI, USDT],
+      [cWBTC, WETH],
+      [cWBTC, DAI],
+      [cWBTC, WBTC],
+      [cWBTC, USDC],
+      [cWBTC, USDT],
+      [cUSDC, WETH],
+      [cUSDT, DAI],
+      [cUSDC, WBTC],
+      [cUSDC, USDC],
+      [cUSDC, USDT],
+      [cUSDT, WETH],
+      [cUSDT, DAI],
+      [cUSDT, WBTC],
+      [cUSDT, USDC],
+      [cUSDT, USDT],
+      [cUNI, WETH],
+      [cUNI, DAI],
+      [cUNI, WBTC],
+      [cUNI, USDC],
+      [cUNI, USDT],
+      [DAI, BUSD],
+      [DAI, CHAI],
+      [DAI, cDAI],
+      [DAI, cUSDC],
+      [DAI, cUSDT],
+      [DAI, GUSD],
+      [DAI, HUSD],
+      [DAI, PAX],
+      [DAI, sUSD],
+      [DAI, USDK],
+      [DAI, USDS], // 0x5088db53589ce265f5aa93129c4e3b0cbcb6e9ddea57b91402757ca8586e1e84
+      [DAI, yCRV],
+      [DAI, yyCRV],
+      [DAI, yUSDT], // 0x076ebfbcb123d2b4eb2193576777d3e558b8743a7760ae9e3e458b7af370209a
+      [DAI, yUSDC],
+      [DAI, yDAI],
+      [DAI, yTUSD], //0x168a960b84b4531e0b8cd88f8209a397db75d7701077e9703fc4385e983c43e5
     ]
+
+    // Deploys both direction
     const pairs = []
     pairArrays = _.unzip(pairs)
     console.log(pairArrays)
@@ -80,7 +146,8 @@ module.exports = async (deployer, network) => {
       indexer.address,
       pairArrays[0],
       pairArrays[1],
-      '0x0000'
+      '0x0000',
+      { gasPrice: 15e9 }
     )
   }
 }
