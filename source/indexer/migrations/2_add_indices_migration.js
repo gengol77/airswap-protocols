@@ -113,13 +113,13 @@ module.exports = async (deployer, network) => {
       [DAI, PAX],
       [DAI, sUSD],
       [DAI, USDK],
-      [DAI, USDS], // 0x5088db53589ce265f5aa93129c4e3b0cbcb6e9ddea57b91402757ca8586e1e84
+      [DAI, USDS],
       [DAI, yCRV],
       [DAI, yyCRV],
-      [DAI, yUSDT], // 0x076ebfbcb123d2b4eb2193576777d3e558b8743a7760ae9e3e458b7af370209a
+      [DAI, yUSDT],
       [DAI, yUSDC],
       [DAI, yDAI],
-      [DAI, yTUSD], //0x168a960b84b4531e0b8cd88f8209a397db75d7701077e9703fc4385e983c43e5
+      [DAI, yTUSD],
     ]
 
     // Deploys both direction
